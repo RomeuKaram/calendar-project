@@ -100,7 +100,7 @@ const TEST_NOW = "2026-11-10T08:00:00"; // ou null para usar data real
 ### 👨‍🏫 Autor
 
 **Prof. Romeu Karam**  
-Maringá - PR | [Instagram @romeukaramneto](https://instagram.com/romeukaramneto) | [GitHub](https://github.com/romeukaram)
+Guarapuava - PR | [Instagram @romeukaramneto](https://instagram.com/romeukaramneto) | [GitHub](https://github.com/romeukaram)
 
 > Projeto educacional criado para auxiliar no planejamento do 4º bimestre.
 
