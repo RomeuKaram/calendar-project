@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calendário Regressivo Escolar 2026</title>
-
   <style>
     :root {
       --navy: #1b365d;
@@ -19,11 +18,7 @@
       --border: #d9e2f3;
       --white: #ffffff;
     }
-
-    * {
-      box-sizing: border-box;
-    }
-
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       min-height: 100vh;
@@ -31,641 +26,252 @@
       color: var(--text);
       background: linear-gradient(135deg, #eef4fb, #ffffff);
     }
-
-    .container {
-      width: min(1180px, 94%);
-      margin: 0 auto;
-      padding: 28px 0 48px;
-    }
-
-    header {
-      text-align: center;
-      margin-bottom: 24px;
-    }
-
-    h1 {
-      margin: 0;
-      color: var(--navy);
-      font-size: clamp(1.7rem, 4vw, 2.7rem);
-    }
-
-    .subtitle {
-      margin-top: 8px;
-      color: var(--muted);
-      font-size: 1rem;
-    }
-
+    .container { width: min(1180px, 94%); margin: 0 auto; padding: 28px 0 48px; }
+    header { text-align: center; margin-bottom: 24px; }
+    h1 { margin: 0; color: var(--navy); font-size: clamp(1.7rem, 4vw, 2.7rem); }
+    .subtitle { margin-top: 8px; color: var(--muted); font-size: 1rem; }
     .countdowns {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin: 24px 0 30px;
+      display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px; margin: 24px 0 30px;
     }
-
     .countdown-card {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 22px;
-      text-align: center;
-      box-shadow: 0 8px 24px rgba(27, 54, 93, 0.12);
+      background: var(--white); border-radius: 16px; padding: 22px;
+      text-align: center; box-shadow: 0 8px 24px rgba(27, 54, 93, 0.12);
       border: 1px solid var(--border);
     }
-
     .countdown-card h2 {
-      margin: 0 0 12px;
-      color: var(--navy);
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
+      margin: 0 0 12px; color: var(--navy); font-size: 1rem;
+      text-transform: uppercase; letter-spacing: 0.04em;
     }
-
     .counter {
-      color: var(--navy);
-      font-size: clamp(1.5rem, 5vw, 3.6rem);
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      font-variant-numeric: tabular-nums;
-      white-space: nowrap;
+      color: var(--navy); font-size: clamp(1.5rem, 5vw, 3.6rem);
+      font-weight: 700; letter-spacing: 0.08em; font-variant-numeric: tabular-nums; white-space: nowrap;
     }
-
-    .counter-label {
-      color: var(--muted);
-      margin-top: 8px;
-      font-size: 0.9rem;
-    }
-
-    .legend {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      margin: 20px 0 28px;
-    }
-
-    .legend-item {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      color: var(--muted);
-      font-size: 0.85rem;
-    }
-
-    .legend-color {
-      width: 16px;
-      height: 16px;
-      border-radius: 4px;
-      border: 1px solid rgba(0, 0, 0, 0.08);
-    }
-
-    .calendar {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 20px;
-    }
-
+    .counter-label { color: var(--muted); margin-top: 8px; font-size: 0.9rem; }
+    .legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 20px 0 28px; }
+    .legend-item { display: inline-flex; align-items: center; gap: 7px; color: var(--muted); font-size: 0.85rem; }
+    .legend-color { width: 16px; height: 16px; border-radius: 4px; border: 1px solid rgba(0, 0, 0, 0.08); }
+    .calendar { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
     .month {
-      background: var(--white);
-      border-radius: 16px;
-      padding: 14px;
-      border: 1px solid var(--border);
-      box-shadow: 0 8px 24px rgba(27, 54, 93, 0.08);
+      background: var(--white); border-radius: 16px; padding: 14px;
+      border: 1px solid var(--border); box-shadow: 0 8px 24px rgba(27, 54, 93, 0.08);
     }
-
     .month-title {
-      background: var(--navy);
-      color: white;
-      border-radius: 10px;
-      text-align: center;
-      padding: 11px 8px;
-      font-weight: 700;
-      margin-bottom: 10px;
+      background: var(--navy); color: white; border-radius: 10px;
+      text-align: center; padding: 11px 8px; font-weight: 700; margin-bottom: 10px;
     }
-
-    .weekdays,
-    .days-grid {
-      display: grid;
-      grid-template-columns: repeat(7, minmax(0, 1fr));
-      gap: 5px;
-    }
-
-    .weekday {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.72rem;
-      font-weight: 700;
-      padding: 5px 0;
-    }
-
+    .weekdays, .days-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 5px; }
+    .weekday { text-align: center; color: var(--muted); font-size: 0.72rem; font-weight: 700; padding: 5px 0; }
+    /* === REFINAMENTO: ALINHAMENTO NO CANTINHO E FIX OVERFLOW === */
     .day {
-      min-height: 78px;
+      min-height: 84px;
       border-radius: 8px;
-      padding: 7px 5px;
-      text-align: center;
+      padding: 6px 6px 5px;
       background: var(--blue-light);
       border: 1px solid rgba(27, 54, 93, 0.08);
       transition: transform 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      text-align: left;
+      overflow: hidden;
     }
-
-    .day:hover {
-      transform: translateY(-2px);
-    }
-
-    .day.empty {
-      visibility: hidden;
-      background: transparent;
-      border: none;
-    }
-
+    .day:hover { transform: translateY(-2px); }
+    .day.empty { visibility: hidden; background: transparent; border: none; }
     .day-number {
       font-weight: 700;
       font-size: 0.95rem;
+      line-height: 1;
+      width: 100%;
+      text-align: left;
     }
-
     .day-status {
-      margin-top: 7px;
-      font-size: 0.68rem;
+      margin-top: 4px;
+      font-size: 0.62rem;
       line-height: 1.15;
       color: #1f497d;
+      width: 100%;
+      text-align: left;
+      font-weight: 600;
+      overflow-wrap: anywhere;
     }
-
-    .day.weekend {
-      background: var(--yellow);
-      color: #7f6000;
-    }
-
-    .day.holiday {
-      background: var(--pink);
-      color: #c00000;
-    }
-
-    .day.today {
-      background: var(--orange);
-      color: #7f3f00;
-      border: 2px solid #d66b00;
-    }
-
-    .day.past {
-      background: var(--red-light);
-      color: #8b0000;
-      text-decoration: line-through;
-    }
-
-    .day.future {
-      background: var(--blue-light);
-      color: #1f497d;
-    }
-
-    .day.vacation {
-      background: var(--green);
-      color: #375623;
-      font-weight: 700;
-    }
-
-    .day.past.weekend,
-    .day.future.weekend {
-      background: var(--yellow);
-      color: #7f6000;
-      text-decoration: none;
-    }
-
-    .day.past.holiday,
-    .day.future.holiday {
-      background: var(--pink);
-      color: #c00000;
-      text-decoration: none;
-    }
-
+    .day.weekend { background: var(--yellow); color: #7f6000; }
+    .day.holiday { background: var(--pink); color: #c00000; }
+    .day.today { background: var(--orange); color: #7f3f00; border: 2px solid #d66b00; }
+    .day.past { background: var(--red-light); color: #8b0000; }
+    .day.past .day-status { text-decoration: line-through; text-decoration-thickness: 1.2px; }
+    .day.future { background: var(--blue-light); color: #1f497d; }
+    .day.vacation { background: var(--green); color: #375623; font-weight: 700; }
+    .day.past.weekend, .day.future.weekend { background: var(--yellow); text-decoration: none; }
+    .day.past.holiday, .day.future.holiday { background: var(--pink); text-decoration: none; }
     .holiday-name {
-      display: block;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
       margin-top: 3px;
-      font-size: 0.58rem;
+      font-size: 0.56rem;
       line-height: 1.05;
       font-weight: 700;
+      width: 100%;
+      text-align: left;
+      overflow-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
     }
-
-    footer {
-      margin-top: 28px;
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.82rem;
-      line-height: 1.6;
-    }
-
-    .author {
-      color: var(--navy);
-      font-weight: 700;
-    }
-
-    @media (max-width: 900px) {
-      .calendar {
-        grid-template-columns: 1fr;
-      }
-    }
-
+    footer { margin-top: 28px; text-align: center; color: var(--muted); font-size: 0.82rem; line-height: 1.6; }
+    .author { color: var(--navy); font-weight: 700; }
+    @media (max-width: 900px) { .calendar { grid-template-columns: 1fr; } }
     @media (max-width: 640px) {
-      .countdowns {
-        grid-template-columns: 1fr;
-      }
-
-      .counter {
-        font-size: clamp(1.45rem, 9vw, 2.8rem);
-        letter-spacing: 0.04em;
-      }
-
-      .day {
-        min-height: 68px;
-      }
-
-      .day-status {
-        font-size: 0.6rem;
-      }
+      .countdowns { grid-template-columns: 1fr; }
+      .counter { font-size: clamp(1.45rem, 9vw, 2.8rem); letter-spacing: 0.04em; }
+      .day { min-height: 70px; }
+      .day-status { font-size: 0.58rem; }
+      .holiday-name { -webkit-line-clamp: 2; font-size: 0.52rem; }
     }
   </style>
 </head>
-
 <body>
   <main class="container">
     <header>
       <h1>Calendário Regressivo Escolar 2026</h1>
-
-      <div class="subtitle">
-        Contagem regressiva até o início das férias em
-        <strong>18/12/2026 às 22:00</strong>
-      </div>
+      <div class="subtitle">Contagem regressiva até o início das férias em <strong>18/12/2026 às 22:00</strong></div>
     </header>
-
     <section class="countdowns">
       <article class="countdown-card">
         <h2>Dias corridos para as férias</h2>
-
-        <div id="calendarCountdown" class="counter">
-          00|00|00|00
-        </div>
-
-        <div class="counter-label">
-          DD | HH | MM | SS
-        </div>
+        <div id="calendarCountdown" class="counter">00|00|00|00</div>
+        <div class="counter-label">DD | HH | MM | SS</div>
       </article>
-
       <article class="countdown-card">
         <h2>Dias letivos para as férias</h2>
-
-        <div id="schoolCountdown" class="counter">
-          00|00|00|00
-        </div>
-
-        <div class="counter-label">
-          Fins de semana e feriados não consomem tempo
-        </div>
+        <div id="schoolCountdown" class="counter">00|00|00|00</div>
+        <div class="counter-label">Fins de semana e feriados não consomem tempo</div>
       </article>
     </section>
-
     <section class="legend">
-      <div class="legend-item">
-        <span class="legend-color" style="background:#eaf3ff"></span>
-        Dias futuros
-      </div>
-
-      <div class="legend-item">
-        <span class="legend-color" style="background:#f4b183"></span>
-        Hoje
-      </div>
-
-      <div class="legend-item">
-        <span class="legend-color" style="background:#f4cccc"></span>
-        Dias passados
-      </div>
-
-      <div class="legend-item">
-        <span class="legend-color" style="background:#fff2cc"></span>
-        Fins de semana
-      </div>
-
-      <div class="legend-item">
-        <span class="legend-color" style="background:#fce4d6"></span>
-        Feriados
-      </div>
+      <div class="legend-item"><span class="legend-color" style="background:#eaf3ff"></span>Dias futuros</div>
+      <div class="legend-item"><span class="legend-color" style="background:#f4b183"></span>Hoje</div>
+      <div class="legend-item"><span class="legend-color" style="background:#f4cccc"></span>Dias passados</div>
+      <div class="legend-item"><span class="legend-color" style="background:#fff2cc"></span>Fins de semana</div>
+      <div class="legend-item"><span class="legend-color" style="background:#fce4d6"></span>Feriados</div>
     </section>
-
     <section id="calendar" class="calendar"></section>
-
-    <footer>
-      Atualização automática a cada segundo.<br />
-      Feito por <span class="author">Prof. Romeu Karam
-</span>
-    </footer>
+    <footer>Atualização automática a cada segundo.<br />Feito por <span class="author">Prof. Romeu Karam</span></footer>
   </main>
-
   <script>
-    /*
-      Data e hora final das férias:
-      18 de dezembro de 2026, às 22:00.
-    */
     const TARGET_DATE = "2026-12-18T22:00:00";
-
-    /*
-      Para testar uma data específica, substitua null por exemplo:
-      "2026-10-23T10:00:00"
-    */
     const TEST_NOW = null;
-
     const holidays = {
       "2026-10-12": "Nossa Senhora Aparecida",
       "2026-11-02": "Finados",
       "2026-11-15": "Proclamação da República",
       "2026-11-20": "Consciência Negra"
     };
-
     const months = [
       { year: 2026, month: 9, name: "OUTUBRO 2026" },
       { year: 2026, month: 10, name: "NOVEMBRO 2026" },
       { year: 2026, month: 11, name: "DEZEMBRO 2026" }
     ];
-
-    const weekdays = [
-      "Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"
-    ];
-
-    function now() {
-      return TEST_NOW ? new Date(TEST_NOW) : new Date();
+    const weekdays = ["Dom","Seg","Ter","Qua","Qui","Sex","Sáb"];
+    function now(){ return TEST_NOW ? new Date(TEST_NOW) : new Date(); }
+    function dateKey(d){ return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`; }
+    function startOfDay(d){ return new Date(d.getFullYear(), d.getMonth(), d.getDate(),0,0,0,0); }
+    function isWeekend(d){ const w=d.getDay(); return w===0||w===6; }
+    function isHoliday(d){ return Object.prototype.hasOwnProperty.call(holidays, dateKey(d)); }
+    function isSchoolDay(d){ return !isWeekend(d) && !isHoliday(d); }
+    function formatCountdown(ms){
+      if(ms<=0) return "00|00|00|00";
+      const s=Math.floor(ms/1000);
+      const days=Math.floor(s/86400), h=Math.floor((s%86400)/3600), m=Math.floor((s%3600)/60), sec=s%60;
+      return [String(days).padStart(2,"0"),String(h).padStart(2,"0"),String(m).padStart(2,"0"),String(sec).padStart(2,"0")].join("|");
     }
-
-    function dateKey(date) {
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const day = String(date.getDate()).padStart(2, "0");
-
-      return `${year}-${month}-${day}`;
-    }
-
-    function startOfDay(date) {
-      return new Date(
-        date.getFullYear(),
-        date.getMonth(),
-        date.getDate(),
-        0,
-        0,
-        0,
-        0
-      );
-    }
-
-    function isWeekend(date) {
-      const weekday = date.getDay();
-      return weekday === 0 || weekday === 6;
-    }
-
-    function isHoliday(date) {
-      return Object.prototype.hasOwnProperty.call(
-        holidays,
-        dateKey(date)
-      );
-    }
-
-    function isSchoolDay(date) {
-      return !isWeekend(date) && !isHoliday(date);
-    }
-
-    function formatCountdown(milliseconds) {
-      if (milliseconds <= 0) {
-        return "00|00|00|00";
+    function elapsedCalendarTimeUntil(t,c){ return Math.max(0, t.getTime()-c.getTime()); }
+    function schoolTimeUntil(target,current){
+      if(current>=target) return 0;
+      let cursor=new Date(current), total=0;
+      while(cursor<target){
+        const nextMidnight=new Date(cursor.getFullYear(), cursor.getMonth(), cursor.getDate()+1,0,0,0,0);
+        const segmentEnd= nextMidnight < target ? nextMidnight : target;
+        if(isSchoolDay(cursor)) total+= segmentEnd.getTime()-cursor.getTime();
+        cursor=segmentEnd;
       }
-
-      const totalSeconds = Math.floor(milliseconds / 1000);
-
-      const days = Math.floor(totalSeconds / 86400);
-      const hours = Math.floor((totalSeconds % 86400) / 3600);
-      const minutes = Math.floor((totalSeconds % 3600) / 60);
-      const seconds = totalSeconds % 60;
-
-      return [
-        String(days).padStart(2, "0"),
-        String(hours).padStart(2, "0"),
-        String(minutes).padStart(2, "0"),
-        String(seconds).padStart(2, "0")
-      ].join("|");
-    }
-
-    function elapsedCalendarTimeUntil(target, current) {
-      const difference = target.getTime() - current.getTime();
-
-      return Math.max(0, difference);
-    }
-
-    /*
-      Calcula somente o tempo dentro dos dias letivos.
-      Durante fins de semana e feriados, o relógio fica congelado.
-    */
-    function schoolTimeUntil(target, current) {
-      if (current >= target) {
-        return 0;
-      }
-
-      let cursor = new Date(current);
-      let total = 0;
-
-      while (cursor < target) {
-        const nextMidnight = new Date(
-          cursor.getFullYear(),
-          cursor.getMonth(),
-          cursor.getDate() + 1,
-          0,
-          0,
-          0,
-          0
-        );
-
-        const segmentEnd =
-          nextMidnight < target ? nextMidnight : target;
-
-        if (isSchoolDay(cursor)) {
-          total += segmentEnd.getTime() - cursor.getTime();
-        }
-
-        cursor = segmentEnd;
-      }
-
       return total;
     }
-
-    function updateCountdowns() {
-      const current = now();
-      const target = new Date(TARGET_DATE);
-
-      const calendarTime =
-        elapsedCalendarTimeUntil(target, current);
-
-      const schoolTime =
-        schoolTimeUntil(target, current);
-
-      document.getElementById("calendarCountdown").textContent =
-        formatCountdown(calendarTime);
-
-      document.getElementById("schoolCountdown").textContent =
-        formatCountdown(schoolTime);
+    function updateCountdowns(){
+      const current=now(), target=new Date(TARGET_DATE);
+      document.getElementById("calendarCountdown").textContent=formatCountdown(elapsedCalendarTimeUntil(target,current));
+      document.getElementById("schoolCountdown").textContent=formatCountdown(schoolTimeUntil(target,current));
     }
-
-    function createDayCell(date) {
-      const cell = document.createElement("div");
-
-      if (!date) {
-        cell.className = "day empty";
-        return cell;
+    function createDayCell(date){
+      const cell=document.createElement("div");
+      if(!date){ cell.className="day empty"; return cell; }
+      const current=now(), today=startOfDay(current), cellDate=startOfDay(date), target=startOfDay(new Date(TARGET_DATE)), key=dateKey(date);
+      cell.className="day";
+      const isToday=cellDate.getTime()===today.getTime();
+      const isPast=cellDate<today, isFuture=cellDate>today, weekend=isWeekend(date), holiday=isHoliday(date);
+      const vacationDay=cellDate.getTime()===target.getTime();
+      if(vacationDay) cell.classList.add("vacation");
+      else if(isToday) cell.classList.add("today");
+      else if(holiday) cell.classList.add("holiday");
+      else if(weekend) cell.classList.add("weekend");
+      else if(isPast) cell.classList.add("past");
+      else if(isFuture) cell.classList.add("future");
+      const number=document.createElement("div");
+      number.className="day-number";
+      number.textContent=String(date.getDate()).padStart(2,"0");
+      const status=document.createElement("div");
+      status.className="day-status";
+      if(vacationDay) status.textContent="Férias 🎉";
+      else if(holiday) status.textContent="Feriado";
+      else if(weekend) status.textContent="Fim de semana";
+      else if(isPast) status.textContent="Concluído";
+      else if(isToday) status.textContent="Hoje";
+      else {
+        const remainingDays=Math.ceil((target.getTime()-cellDate.getTime())/86400000);
+        status.textContent=`faltam ${Math.max(0,remainingDays)} dias`;
       }
-
-      const current = now();
-      const today = startOfDay(current);
-      const cellDate = startOfDay(date);
-      const target = startOfDay(new Date(TARGET_DATE));
-      const key = dateKey(date);
-
-      cell.className = "day";
-
-      const isToday =
-        cellDate.getTime() === today.getTime();
-
-      const isPast = cellDate < today;
-      const isFuture = cellDate > today;
-      const weekend = isWeekend(date);
-      const holiday = isHoliday(date);
-
-      const vacationDay =
-        cellDate.getTime() === target.getTime();
-
-      if (vacationDay) {
-        cell.classList.add("vacation");
-      } else if (isToday) {
-        cell.classList.add("today");
-      } else if (holiday) {
-        cell.classList.add("holiday");
-      } else if (weekend) {
-        cell.classList.add("weekend");
-      } else if (isPast) {
-        cell.classList.add("past");
-      } else if (isFuture) {
-        cell.classList.add("future");
-      }
-
-      const number = document.createElement("div");
-      number.className = "day-number";
-      number.textContent = String(date.getDate()).padStart(2, "0");
-
-      const status = document.createElement("div");
-      status.className = "day-status";
-
-      if (vacationDay) {
-        status.textContent = "Férias 🎉";
-      } else if (holiday) {
-        status.textContent = "Feriado";
-      } else if (weekend) {
-        status.textContent = "Fim de semana";
-      } else if (isPast) {
-        status.textContent = "Concluído";
-      } else if (isToday) {
-        status.textContent = "Hoje";
-      } else {
-        const remainingDays = Math.ceil(
-          (target.getTime() - cellDate.getTime()) / 86400000
-        );
-
-        status.textContent =
-          `faltam ${Math.max(0, remainingDays)} dias`;
-      }
-
       cell.appendChild(number);
       cell.appendChild(status);
-
-      if (holiday) {
-        const holidayName = document.createElement("span");
-        holidayName.className = "holiday-name";
-        holidayName.textContent = holidays[key];
-        cell.appendChild(holidayName);
+      if(holiday){
+        const hn=document.createElement("span");
+        hn.className="holiday-name";
+        hn.textContent=holidays[key];
+        hn.title=holidays[key];
+        cell.appendChild(hn);
       }
-
       return cell;
     }
-
-    function renderMonth(monthData) {
-      const monthSection = document.createElement("section");
-      monthSection.className = "month";
-
-      const title = document.createElement("div");
-      title.className = "month-title";
-      title.textContent = monthData.name;
-
+    function renderMonth(monthData){
+      const monthSection=document.createElement("section");
+      monthSection.className="month";
+      const title=document.createElement("div");
+      title.className="month-title";
+      title.textContent=monthData.name;
       monthSection.appendChild(title);
-
-      const weekdaysRow = document.createElement("div");
-      weekdaysRow.className = "weekdays";
-
-      weekdays.forEach(day => {
-        const weekday = document.createElement("div");
-        weekday.className = "weekday";
-        weekday.textContent = day;
-        weekdaysRow.appendChild(weekday);
-      });
-
+      const weekdaysRow=document.createElement("div");
+      weekdaysRow.className="weekdays";
+      weekdays.forEach(d=>{ const w=document.createElement("div"); w.className="weekday"; w.textContent=d; weekdaysRow.appendChild(w); });
       monthSection.appendChild(weekdaysRow);
-
-      const daysGrid = document.createElement("div");
-      daysGrid.className = "days-grid";
-
-      const firstDay = new Date(
-        monthData.year,
-        monthData.month,
-        1
-      );
-
-      const daysInMonth = new Date(
-        monthData.year,
-        monthData.month + 1,
-        0
-      ).getDate();
-
-      const firstWeekday = firstDay.getDay();
-
-      for (let i = 0; i < firstWeekday; i++) {
-        daysGrid.appendChild(createDayCell(null));
-      }
-
-      for (let day = 1; day <= daysInMonth; day++) {
-        const date = new Date(
-          monthData.year,
-          monthData.month,
-          day
-        );
-
-        daysGrid.appendChild(createDayCell(date));
-      }
-
+      const daysGrid=document.createElement("div");
+      daysGrid.className="days-grid";
+      const firstDay=new Date(monthData.year, monthData.month, 1);
+      const daysInMonth=new Date(monthData.year, monthData.month+1, 0).getDate();
+      const firstWeekday=firstDay.getDay();
+      for(let i=0;i<firstWeekday;i++) daysGrid.appendChild(createDayCell(null));
+      for(let day=1; day<=daysInMonth; day++) daysGrid.appendChild(createDayCell(new Date(monthData.year, monthData.month, day)));
       monthSection.appendChild(daysGrid);
-
       return monthSection;
     }
-
-    function renderCalendar() {
-      const calendar = document.getElementById("calendar");
-      calendar.innerHTML = "";
-
-      months.forEach(month => {
-        calendar.appendChild(renderMonth(month));
-      });
+    function renderCalendar(){
+      const calendar=document.getElementById("calendar");
+      calendar.innerHTML="";
+      months.forEach(m=>calendar.appendChild(renderMonth(m)));
     }
-
-    function refresh() {
-      updateCountdowns();
-      renderCalendar();
-    }
-
+    function refresh(){ updateCountdowns(); renderCalendar(); }
     refresh();
-
-    /*
-      Atualização visual a cada segundo.
-    */
-    setInterval(() => {
-      updateCountdowns();
-      renderCalendar();
-    }, 1000);
+    setInterval(()=>{ updateCountdowns(); renderCalendar(); }, 1000);
   </script>
 </body>
 </html>
